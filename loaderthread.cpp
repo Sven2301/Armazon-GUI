@@ -38,6 +38,7 @@ void LoaderThread::_init_(QMutex *_mutex, QMutex *_mutex2, QLabel *lbl){
 
     activo = true;
     pausado = false;
+    error = false;
     mutexColaPedidos = _mutex;
     mutexColaPedidosP = _mutex2;
     listaClientes = new LSClientes();
@@ -452,12 +453,21 @@ void LoaderThread::cargarPedido(){
                         escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nEl codigo de cliente es incorrecto\n");
                         break;
                     }
+
+                    if (!listaClientes->find(codigoCliente)){
+                        qDebug()<<"El codigo de cliente no existe\n";
+                        escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nEl codigo de cliente no existe\n");
+                         ok = false;
+                    }
+
+                    qDebug()<<"Al final me quedo esto en las variables: " + strNumeroPedido + "/" + strCodigoCliente;
                     i++;
                     selector = 3;
                     break;
                 }
                 selector++;
                 continue;
+
             }
             switch(selector){
             case 1: strNumeroPedido += texto[i];break;
@@ -468,6 +478,14 @@ void LoaderThread::cargarPedido(){
 
             }
 
+        }
+
+        if (strCodigoCliente == "" or strNumeroPedido == ""){
+
+            qDebug()<<"No se cargo correctamente el codigo de articulo o codigo de cliente\n";
+            escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nHay un error con el codigo de cliente o el codigo de articulo\n");
+
+            ok = false;
         }
 
         if (!ok){
@@ -513,6 +531,7 @@ void LoaderThread::cargarPedido(){
                     break;
                 }
 
+                strCodigoArticulo = strCodigoArticulo.toUpper();
                 if (!listaArticulos->isInList(strCodigoArticulo)){
                     qDebug()<<"El codigo de articulo no existe\n";
                     escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nEl codigo de articulo no existe\n");
@@ -533,12 +552,21 @@ void LoaderThread::cargarPedido(){
                     ok = false;
                     break;
                 }
-                pedido->listaPedido->insertarAlInicio(strCodigoArticulo, cantidad);
+                if (!pedido->listaPedido->isInList(strCodigoArticulo)){
+                    pedido->listaPedido->insertarAlInicio(strCodigoArticulo, cantidad);
 
-                strCodigoArticulo = strCantidad = "";
-                selector = 3;
-                cantidad = 0;
-                continue;
+                    strCodigoArticulo = strCantidad = "";
+                    selector = 3;
+                    cantidad = 0;
+                    continue;
+                }
+                else{
+
+                    qDebug()<<"Hay articulos repetidos en el pedido\n";
+                    escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nHay articulos repetidos en el pedido\n");
+                    ok = false;
+                    break;
+                }
             }
             else if(texto[i] == '-')
                 continue;
@@ -548,7 +576,7 @@ void LoaderThread::cargarPedido(){
             case 4: strCantidad += texto[i];break;
             default:qDebug()<<"No existe este codigo de selector pedido";
                 escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nRevise que el archivo no tenga mas/menos datos de los necesarios\n");
-                            ok = false;
+                ok = false;
             }
 
         }
