@@ -33,9 +33,11 @@ void MainWindow::on_botonEmpezar_clicked()
             verificarPedido = new PedidoCompletado();
             bodega = new BodegaAlisto;
             empacador = new Empacador;
+            facturador = new Facturador();
             //factura = new Factura;
 
-            empacador->__init__(ui->lblEmpacador, ui->lblColaAlistado);
+            empacador->__init__(ui->lblEmpacador, ui->lblColaAlistado, ui->lblPorFacturar);
+            facturador->__init__(empacador->colaPorFacturar, ui->lblFacturador, ui->lblPorFacturar);
             // factura->__init__(empacador->colaPorFacturar);
             bodega->__init__(loader->listaArticulos, empacador->colaAlistado, ui->lblColaAlisto,
                              ui->lblAlistador1, ui->lblAlistador2, ui->lblAlistador3, ui->lblAlistador4,
@@ -61,7 +63,7 @@ void MainWindow::on_botonEmpezar_clicked()
             verificarPedido->start();
             bodega->start();
             empacador->start();
-            //factura->start();
+            facturador->start();
         }
         else
            qDebug()<<"No inicio ERROR en Articulos\n";

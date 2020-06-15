@@ -2,6 +2,7 @@
 #define PEDIDO_H
 #include <QString>
 #include <QDebug>
+#include "factura.h"
 
 // Prototipos de estructuras
 struct NodoLSP;
@@ -13,6 +14,7 @@ struct Pedido
     LSPedido *listaPedido;
     int numeroPedido = 0;
     int codigoCliente = 0;
+    Factura *infoFactura;
 
 public:
     Pedido();

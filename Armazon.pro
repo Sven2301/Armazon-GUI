@@ -22,6 +22,8 @@ SOURCES += \
     colapedidos.cpp \
     empacador.cpp \
     fabricas.cpp \
+    factura.cpp \
+    facturador.cpp \
     isPedidoCompleto.cpp \
     ldarticulos.cpp \
     loaderthread.cpp \
@@ -37,6 +39,8 @@ HEADERS += \
     colapedidos.h \
     empacador.h \
     fabricas.h \
+    factura.h \
+    facturador.h \
     isPedidoCompleto.h \
     ldarticulos.h \
     loaderthread.h \

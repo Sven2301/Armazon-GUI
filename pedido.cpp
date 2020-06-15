@@ -1,6 +1,10 @@
 #include "pedido.h"
 
-Pedido::Pedido(){listaPedido = new LSPedido();}
+Pedido::Pedido(){
+
+    listaPedido = new LSPedido();
+    infoFactura = new Factura();
+}
 
 LSPedido::LSPedido(){primerNodo = nullptr;}
 

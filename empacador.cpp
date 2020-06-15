@@ -2,7 +2,7 @@
 
 Empacador::Empacador() {}
 
-void Empacador::__init__(QLabel *_lblPersonal, QLabel *_lblColaAlistado)
+void Empacador::__init__(QLabel *_lblPersonal, QLabel *_lblColaAlistado, QLabel *_lblFacturar)
 {
     colaAlistado = new ColaPedidos;
     colaPorFacturar = new ColaPedidos;
@@ -12,6 +12,7 @@ void Empacador::__init__(QLabel *_lblPersonal, QLabel *_lblColaAlistado)
     totalEmpacados = 0;
     lblEmpacados = _lblPersonal;
     lblColaAlistado = _lblColaAlistado;
+    lblColaFacturar = _lblFacturar;
 
 }
 
@@ -27,8 +28,6 @@ void Empacador::run()
             if (!colaAlistado->vacia()){
                 qDebug() << "\n***** EMPACADOR *****\n" << i;
                 colaAlistado->imprimir();
-                totalEmpacados++;
-                lblEmpacados->setText(QString::number(totalEmpacados));
                 NodoCP * tmp = colaAlistado->frente;
                 int tiempoEmpacando = cantArticulos(tmp->pedido);
 
@@ -37,12 +36,23 @@ void Empacador::run()
                 resume();
                 start();
                 qDebug() <<"\n***** SALE EMPACADOR *****\n" << i;
-                colaAlistado->desencolar();
-
+                QDateTime date;
+                date = QDateTime::currentDateTime();
+                QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
+                tmp->pedido->infoFactura->horaEmpaque = strFechaHora;
                 colaAlistado->pedidosActuales -= 1;
                 lblColaAlistado->setText(QString::number(colaAlistado->pedidosActuales) + " / " + QString::number(colaAlistado->pedidosTotales));
+                totalEmpacados++;
+                lblEmpacados->setText(QString::number(totalEmpacados));
+
+                colaAlistado->desencolar();
+
 
                 colaPorFacturar->encolar(tmp->pedido);
+                colaPorFacturar->pedidosActuales += 1;
+                colaPorFacturar->pedidosTotales += 1;
+                lblColaFacturar->setText(QString::number(colaPorFacturar->pedidosActuales) + " / " + QString::number(colaPorFacturar->pedidosTotales));
+
                 i++; // Prueba
             }
             /*else{

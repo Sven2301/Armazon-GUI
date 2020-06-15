@@ -9,6 +9,7 @@
 #include "alistadores.h"
 #include "bodegaAlisto.h"
 #include "empacador.h"
+#include "facturador.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,6 +29,7 @@ public:
     PedidoCompletado * verificarPedido;
     BodegaAlisto * bodega;
     Empacador * empacador;
+    Facturador *facturador;
 
 
     MainWindow(QWidget *parent = nullptr);

@@ -10,6 +10,7 @@
 #include <QMap>
 #include <QDateTime>
 #include <QLabel>
+#include "factura.h"
 
 struct mapValorLetras;
 struct Coordenadas;

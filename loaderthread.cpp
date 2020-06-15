@@ -364,7 +364,6 @@ QString LoaderThread::renombrarArchivo(QString path){
     QString strNuevoNombre = "";
     date = QDateTime::currentDateTime();
     strNuevoNombre = path + date.toString("dd-MM-yyyy hh-mm-ss") + ".txt";
-    //qDebug()<<strNuevoNombre;
     archivo.setFileName(path);
     archivo.rename(strNuevoNombre);
 
@@ -475,18 +474,14 @@ void LoaderThread::cargarPedido(){
             i += texto.length(); //Para que no entre al for
         }
         else{
-            qDebug()<<"Estoy revisando que el numero de pedido";
-            qDebug()<<numeroPedido;
-            qDebug()<<" no esté repetido en esta lista\n\n";
-            foreach(int x, numeroPedidos)
-             qDebug()<<x;
-            qDebug()<<"\n\n";
             if(!numeroPedidos.contains(numeroPedido)){
 
                 pedido = new Pedido();
                 qDebug()<<"NUMERO DE PEDIDO"<<numeroPedido<<Qt::endl;
                 pedido->numeroPedido = numeroPedido;
                 pedido->codigoCliente = codigoCliente;
+                pedido->infoFactura->numeroPedido = QString::number(numeroPedido);
+                pedido->infoFactura->codigoCliente = QString::number(codigoCliente);
                 numeroPedidos << numeroPedido;
                 numeroPedido = 0;
                 codigoCliente = 0;
@@ -582,6 +577,10 @@ void LoaderThread::cargarPedido(){
            if ((listaClientes->find(pedido->codigoCliente))->prioridad == 10){
                 //qDebug()<<"No se cae aqui";             
                     colaPedidosPrioridad->encolar(pedido);
+                    QDateTime date;
+                    date = QDateTime::currentDateTime();
+                    QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
+                    pedido->infoFactura->horaLoader = strFechaHora;
                     qDebug()<<"PPPPPPPPPPPPPPRIORIDAD\n";
                     colaPedidosPrioridad->imprimir();
                     colaPedidosPrioridad->pedidosTotales += 1;
@@ -597,6 +596,10 @@ void LoaderThread::cargarPedido(){
            else{
 
                     colaPedidos->encolar(pedido);
+                    QDateTime date;
+                    date = QDateTime::currentDateTime();
+                    QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
+                    pedido->infoFactura->horaLoader = strFechaHora;
                     qDebug()<<"NNNNNNNNNNNORMAL\n";
                     colaPedidos->imprimir();
                     colaPedidos->pedidosTotales += 1;

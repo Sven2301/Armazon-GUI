@@ -27,6 +27,10 @@ void PedidoCompletado::run()
                 if(isCompleted(aux->pedido)){
                     qDebug() << "Pedido se dirige a la cola de Alisto" << aux->pedido->numeroPedido;
                     // Encolado en colaAlisto
+                    QDateTime date;
+                    date = QDateTime::currentDateTime();
+                    QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
+                    aux->pedido->infoFactura->horaAlisto = strFechaHora;
 
                     colaAlisto->encolar(aux->pedido);
                     colaAlisto->pedidosActuales += 1;

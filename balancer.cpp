@@ -71,6 +71,10 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
     qDebug() << "\n***** BALANCER *****\n";
     qDebug() << "\nDesencolando pedido de la ColaPedidos";
     NodoCP * tmp = colapedido->desencolar();
+    QDateTime date;
+    date = QDateTime::currentDateTime();
+    QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
+    tmp->pedido->infoFactura->horaBalancer = strFechaHora;
     pedidosProcesados++;
     lblBalanceador->setText(QString::number(pedidosProcesados));
     colaPedidos->pedidosActuales -= 1;
@@ -83,7 +87,10 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
 
     if(pedidoCompleto(tmp)){
         colaAlisto->encolar(tmp->pedido);
-
+        QDateTime date;
+        date = QDateTime::currentDateTime();
+        QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
+        tmp->pedido->infoFactura->horaAlisto = strFechaHora;
         colaAlisto->pedidosActuales += 1;
         colaAlisto->pedidosTotales += 1;
         lblColaAlisto->setText(QString::number(pedidosActuales) + " / " + QString::number(pedidosTotales));

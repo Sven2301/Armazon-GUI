@@ -16,6 +16,7 @@ public:
     QMutex *mutexEmpacador;
     QLabel *lblEmpacados;
     QLabel *lblColaAlistado;
+    QLabel *lblColaFacturar;
     int totalEmpacados;
 
 
@@ -24,7 +25,7 @@ public:
 
     //Metodos
     Empacador();
-    void __init__(QLabel*, QLabel*);
+    void __init__(QLabel*, QLabel*, QLabel*);
 
     int cantArticulos(Pedido*);
     void run();
