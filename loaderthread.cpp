@@ -54,7 +54,10 @@ void LoaderThread::actualizarInventario(){
     QString strMsg = "";
     QByteArray msg;
     QFile archivo;
-    QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Articulos.txt";
+
+    //QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Articulos.txt";
+    QString path = "C:/Users/Fung Méndez/Desktop/Diego/Sem III/Estructuras/PROYECTS/Proyecto CONSOLE/Proyecto_1/BD/Articulos.txt";
+
     archivo.setFileName(path);
 
     while (tmp != nullptr){
