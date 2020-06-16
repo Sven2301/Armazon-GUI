@@ -17,6 +17,7 @@ public:
     QLabel *lblColaPorFacturar;
     ColaPedidos *colaPorFacturar;
     int totalFacturados;
+    int actualFacturando;
 
     bool activo;
     bool pausa;

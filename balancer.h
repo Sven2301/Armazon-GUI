@@ -28,7 +28,8 @@ public:
     QLabel *lblF3;
     QLabel *lblF4;
     LDArticulos* articulos;
-    int pedidosProcesados;
+    int pedidosProcesadosTotales;
+    int pedidosProcesadosActuales;
     bool activo;
     bool pausa;
 

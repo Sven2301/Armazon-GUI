@@ -11,6 +11,7 @@ void Facturador::__init__(ColaPedidos* _colaPorFacturar, QLabel *_lblPersonal, Q
     lblColaPorFacturar = _lblFacturar;
     lblPersonal = _lblPersonal;
     totalFacturados = 0;
+    actualFacturando = 0;
     activo = true;
     pausa = false;
 
@@ -74,7 +75,8 @@ void Facturador::run(){
             colaPorFacturar->pedidosActuales -= 1;
             lblColaPorFacturar->setText(QString::number(colaPorFacturar->pedidosActuales) + " / " + QString::number(colaPorFacturar->pedidosTotales));
             totalFacturados++;
-            lblPersonal->setText(QString::number(totalFacturados));
+            actualFacturando++;
+            lblPersonal->setText(QString::number(actualFacturando) + " / " + QString::number(totalFacturados));
 
             QDateTime date;
             date = QDateTime::currentDateTime();
@@ -82,6 +84,8 @@ void Facturador::run(){
             tmp->pedido->infoFactura->horaFacturacion = strFechaHora;
 
             facturar(tmp->pedido);
+            actualFacturando--;
+            lblPersonal->setText(QString::number(actualFacturando) + " / " + QString::number(totalFacturados));
 
 
         }

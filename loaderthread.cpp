@@ -48,6 +48,30 @@ void LoaderThread::_init_(QMutex *_mutex, QMutex *_mutex2, QLabel *lbl){
     lblColaPedidos = lbl;
 }
 
+void LoaderThread::actualizarInventario(){
+
+    NodoLDA *tmp = listaArticulos->ultimoNodo;
+    QString strMsg = "";
+    QByteArray msg;
+    QFile archivo;
+    QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Articulos.txt";
+    archivo.setFileName(path);
+
+    while (tmp != nullptr){
+
+        strMsg += tmp->strCodigo + "\t"
+                + QString::number(tmp->cantidad) + "\t"
+                + QString::number(tmp->tiempoFabricacion) + "\t"
+                + tmp->strCategoria +"\t"
+                + tmp->strUbicacion + "\n";
+        tmp = tmp->anterior;
+    }
+    msg = strMsg.toUtf8();
+    archivo.remove();
+    archivo.open(QIODevice::ReadWrite | QIODevice::Text);
+    archivo.write(msg);
+    archivo.close();
+}
 
 QByteArray LoaderThread::leerArchivo(QString path){
 
@@ -500,10 +524,8 @@ void LoaderThread::cargarPedido(){
                 pedido->codigoCliente = codigoCliente;
                 pedido->infoFactura->numeroPedido = QString::number(numeroPedido);
                 pedido->infoFactura->codigoCliente = QString::number(codigoCliente);
-                numeroPedidos << numeroPedido;
-                numeroPedido = 0;
-                codigoCliente = 0;
-                qDebug()<<"Que hace";
+
+
             }
             else{
                 qDebug()<<"El numero de pedido ya existe\n";
@@ -512,9 +534,7 @@ void LoaderThread::cargarPedido(){
                 i += texto.length();
             }
         }
-        qDebug()<<"Por favor\n";
         for (i; i < texto.length(); ++i) {
-            qDebug()<<"Dando vueltas";
             if(texto[i] == '\t'){
                 selector++;
                 continue;
@@ -581,7 +601,6 @@ void LoaderThread::cargarPedido(){
             }
 
         }
-        qDebug()<<"No entiendo bro\n";
         strNombreArchivo = pathSinProcesar + "\\" + dirSinProcesar[2];
 
         dirSinProcesar.setPath("C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Sin procesar");
@@ -606,6 +625,7 @@ void LoaderThread::cargarPedido(){
            if ((listaClientes->find(pedido->codigoCliente))->prioridad == 10){
                 //qDebug()<<"No se cae aqui";             
                     colaPedidosPrioridad->encolar(pedido);
+                    numeroPedidos << numeroPedido;
                     QDateTime date;
                     date = QDateTime::currentDateTime();
                     QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
@@ -625,6 +645,7 @@ void LoaderThread::cargarPedido(){
            else{
 
                     colaPedidos->encolar(pedido);
+                    numeroPedidos << numeroPedido;
                     QDateTime date;
                     date = QDateTime::currentDateTime();
                     QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
@@ -642,11 +663,10 @@ void LoaderThread::cargarPedido(){
 
             }
         }
-        qDebug()<<"Dando vueltas2\n";
     }
 
-    else
-       qDebug()<<"No hay archivos\n";
+    //else
+      // qDebug()<<"No hay archivos\n";
 }
 
 void LoaderThread::run(){

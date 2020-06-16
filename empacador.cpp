@@ -10,6 +10,7 @@ void Empacador::__init__(QLabel *_lblPersonal, QLabel *_lblColaAlistado, QLabel 
     activo = true;
     pausa = false;
     totalEmpacados = 0;
+    actualEmpacando = 0;
     lblEmpacados = _lblPersonal;
     lblColaAlistado = _lblColaAlistado;
     lblColaFacturar = _lblFacturar;
@@ -30,6 +31,9 @@ void Empacador::run()
                 colaAlistado->imprimir();
                 NodoCP * tmp = colaAlistado->frente;
                 int tiempoEmpacando = cantArticulos(tmp->pedido);
+                totalEmpacados++;
+                actualEmpacando++;
+                lblEmpacados->setText( QString::number(actualEmpacando) + " / " + QString::number(totalEmpacados));
 
                 pause();
                 sleep(tiempoEmpacando);
@@ -42,8 +46,6 @@ void Empacador::run()
                 tmp->pedido->infoFactura->horaEmpaque = strFechaHora;
                 colaAlistado->pedidosActuales -= 1;
                 lblColaAlistado->setText(QString::number(colaAlistado->pedidosActuales) + " / " + QString::number(colaAlistado->pedidosTotales));
-                totalEmpacados++;
-                lblEmpacados->setText(QString::number(totalEmpacados));
 
                 colaAlistado->desencolar();
 
@@ -52,6 +54,9 @@ void Empacador::run()
                 colaPorFacturar->pedidosActuales += 1;
                 colaPorFacturar->pedidosTotales += 1;
                 lblColaFacturar->setText(QString::number(colaPorFacturar->pedidosActuales) + " / " + QString::number(colaPorFacturar->pedidosTotales));
+
+                actualEmpacando--;
+                lblEmpacados->setText( QString::number(actualEmpacando) + " / " + QString::number(totalEmpacados));
 
                 i++; // Prueba
             }

@@ -17,6 +17,7 @@ public:
     QLabel *lblColaAlistado;
 
     int pedidosAlistados;
+    int pedidosActuales;
 
     QMutex *mutexAlistador;
     bool activo;

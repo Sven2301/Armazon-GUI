@@ -48,6 +48,7 @@ public:
     void escribirArchivo(QString, QByteArray);
     void borrarArchivo(QString);
     void cargarPedido(void);
+    void actualizarInventario();
     void run();
 };
 
