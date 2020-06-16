@@ -53,6 +53,7 @@ bool LDArticulos::insertarAlInicio(QString _codigo, QString _ubicacion, QString 
      {
           //ambos apuntan al nuevo en memoria
          primerNodo = new NodoLDA(_codigo, _ubicacion, _categoria, _tiempoFabricacion, _cantidad, _fila, _columna);
+         ultimoNodo = primerNodo;
          insertado = true;
      }
 

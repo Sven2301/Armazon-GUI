@@ -16,6 +16,7 @@ void Alistador::__init__(int _id, LDArticulos * _articulos, ColaPedidos * _colaA
     activo = true;
     pausa = false;
     pedidosAlistados = 0;
+    pedidosActuales= 0;
 }
 
 void Alistador::run()
@@ -32,7 +33,8 @@ void Alistador::run()
                 qDebug() << "--------ENTRA ALISTADOR " << id << "---------";
                 qDebug() << "\nTiempo que dura el Alistador: " << duracionAlistador;
                 pedidosAlistados++;
-                lblPedidosAlistados->setText(QString::number(pedidosAlistados));
+                pedidosActuales++;
+                lblPedidosAlistados->setText(QString::number(pedidosActuales) + " / " + QString::number(pedidosAlistados));
 
                 pause();
                 sleep(duracionAlistador);
@@ -43,6 +45,8 @@ void Alistador::run()
                 colaAlistado->pedidosTotales += 1;
                 colaAlistado->pedidosActuales += 1;
                 lblColaAlistado->setText(QString::number(colaAlistado->pedidosActuales) + " / " + QString::number(colaAlistado->pedidosTotales));
+                pedidosActuales--;
+                lblPedidosAlistados->setText(QString::number(pedidosActuales) + " / " + QString::number(pedidosAlistados));
 
                 pedido->infoFactura->numeroAlistador = QString::number(id);
                 addInfoArticulos(pedido);

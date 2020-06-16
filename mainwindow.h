@@ -47,6 +47,10 @@ private slots:
 
     void on_btnReanudar_Balancer_clicked();
 
+    void on_btnPausar_todo_clicked();
+
+    void on_btnReanudar_todo_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

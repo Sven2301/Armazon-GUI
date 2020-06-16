@@ -22,7 +22,8 @@ void Balancer::__init__(QMutex* _mutex, QMutex* _mutexP,
     lblF2 = _lblF2;
     lblF3 = _lblF3;
     lblF4 = _lblF4;
-    pedidosProcesados = 0;
+    pedidosProcesadosTotales = 0;
+    pedidosProcesadosActuales = 0;
 
     f1 = _f1;
     f2 = _f2;
@@ -75,8 +76,9 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
     date = QDateTime::currentDateTime();
     QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
     tmp->pedido->infoFactura->horaBalancer = strFechaHora;
-    pedidosProcesados++;
-    lblBalanceador->setText(QString::number(pedidosProcesados));
+    pedidosProcesadosActuales++;
+    pedidosProcesadosTotales++;
+    lblBalanceador->setText(QString::number(pedidosProcesadosActuales) + " / " + QString::number(pedidosProcesadosTotales));
     colaPedidos->pedidosActuales -= 1;
     int pedidosActuales = colaPedidosPrioridad->pedidosActuales + colaPedidos->pedidosActuales;
     int pedidosTotales = colaPedidosPrioridad->pedidosTotales + colaPedidos->pedidosTotales;
@@ -94,9 +96,13 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
         colaAlisto->pedidosActuales += 1;
         colaAlisto->pedidosTotales += 1;
         lblColaAlisto->setText(QString::number(pedidosActuales) + " / " + QString::number(pedidosTotales));
+        pedidosProcesadosActuales--;
+        lblBalanceador->setText(QString::number(pedidosProcesadosActuales) + " / " + QString::number(pedidosProcesadosTotales));
 
         qDebug() << "\nPedido enviado a ColaAlisto";
     }else{
+        pedidosProcesadosActuales--;
+        lblBalanceador->setText(QString::number(pedidosProcesadosActuales) + " / " + QString::number(pedidosProcesadosTotales));
         direccionarAFabrica(tmp->pedido);
     }
 }

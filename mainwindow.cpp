@@ -91,3 +91,44 @@ void MainWindow::on_btnReanudar_Balancer_clicked()
 {
     balancer->pausa = false;
 }
+
+void MainWindow::on_btnPausar_todo_clicked()
+{
+    loader->pausado = true;
+    balancer->pausa = true;
+    bodega->pausa = true;
+    bodega->a1->pausa = true;
+    bodega->a2->pausa = true;
+    bodega->a3->pausa = true;
+    bodega->a4->pausa = true;
+    bodega->a5->pausa = true;
+    bodega->a6->pausa = true;
+    empacador->pausa = true;
+    facturador->pausa = true;
+    verificarPedido->pausa = true;
+    balancer->f1->pausa = true;
+    balancer->f2->pausa = true;
+    balancer->f3->pausa = true;
+    balancer->fComodin->pausa = true;
+    loader->actualizarInventario();
+}
+
+void MainWindow::on_btnReanudar_todo_clicked()
+{
+    loader->pausado = false;
+    balancer->pausa = false;
+    bodega->pausa = false;
+    bodega->a1->pausa = false;
+    bodega->a2->pausa = false;
+    bodega->a3->pausa = false;
+    bodega->a4->pausa = false;
+    bodega->a5->pausa = false;
+    bodega->a6->pausa = false;
+    empacador->pausa = false;
+    facturador->pausa = false;
+    verificarPedido->pausa = false;
+    balancer->f1->pausa = false;
+    balancer->f2->pausa = false;
+    balancer->f3->pausa = false;
+    balancer->fComodin->pausa = false;
+}

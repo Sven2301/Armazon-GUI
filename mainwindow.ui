@@ -521,6 +521,32 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnPausar_todo">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>390</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pausar todo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReanudar_todo">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>420</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reanudar todo</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -18,6 +18,7 @@ public:
     QLabel *lblColaAlistado;
     QLabel *lblColaFacturar;
     int totalEmpacados;
+    int actualEmpacando;
 
 
     bool activo;
