@@ -44,6 +44,8 @@ void Alistador::run()
                 colaAlistado->pedidosActuales += 1;
                 lblColaAlistado->setText(QString::number(colaAlistado->pedidosActuales) + " / " + QString::number(colaAlistado->pedidosTotales));
 
+                pedido->infoFactura->numeroAlistador = QString::number(id);
+                addInfoArticulos(pedido);
 
                 colaAlistado->encolar(pedido);
                 pedido = nullptr;
@@ -104,4 +106,37 @@ void Alistador::resume()
 void Alistador::finish()
 {
     activo = false;
+}
+
+void Alistador::addInfoArticulos(Pedido * pedido){
+
+    NodoLSP *tmp = pedido->listaPedido->primerNodo;
+
+    while (tmp != nullptr){
+
+        pedido->infoFactura->infoArticulos->insertarAlInicio(tmp->codigo, tmp->ubicacion, getDuracion(tmp->codigo));
+        tmp = tmp->siguiente;
+    }
+
+}
+
+QString Alistador::getDuracion(QString codigo)
+{
+    NodoLDA * tmp = articulos->primerNodo;
+    int fila = 0;
+    int columna = 0;
+    int duracion = 0;
+
+    while(tmp != nullptr){
+        if(tmp->strCodigo == codigo){
+
+            fila = tmp->fila;
+            columna = tmp->columna;
+            duracion = ((fila+columna)-1)*2;
+            return QString::number(duracion);
+
+        }
+        tmp = tmp->siguiente;
+    }
+    return "";
 }

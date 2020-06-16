@@ -30,7 +30,7 @@ public:
     //Metodos
     LSPedido();
     int largoLista();
-    bool insertarAlInicio(QString, int);
+    bool insertarAlInicio(QString, int, QString);
     bool isInList(QString);
     void imprimir();
 };
@@ -47,12 +47,13 @@ public:
     //Atributos
     NodoLSP *siguiente = nullptr;
     QString codigo = "";
+    QString ubicacion;
     int cantidad = 0;
     bool completado = false;
     int cantFaltante = 0;
 
     //Metodos
-    NodoLSP(QString, int);
+    NodoLSP(QString, int, QString);
     void imprimir();
 
 };

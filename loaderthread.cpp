@@ -503,6 +503,7 @@ void LoaderThread::cargarPedido(){
                 numeroPedidos << numeroPedido;
                 numeroPedido = 0;
                 codigoCliente = 0;
+                qDebug()<<"Que hace";
             }
             else{
                 qDebug()<<"El numero de pedido ya existe\n";
@@ -511,9 +512,9 @@ void LoaderThread::cargarPedido(){
                 i += texto.length();
             }
         }
-
+        qDebug()<<"Por favor\n";
         for (i; i < texto.length(); ++i) {
-
+            qDebug()<<"Dando vueltas";
             if(texto[i] == '\t'){
                 selector++;
                 continue;
@@ -553,7 +554,7 @@ void LoaderThread::cargarPedido(){
                     break;
                 }
                 if (!pedido->listaPedido->isInList(strCodigoArticulo)){
-                    pedido->listaPedido->insertarAlInicio(strCodigoArticulo, cantidad);
+                    pedido->listaPedido->insertarAlInicio(strCodigoArticulo, cantidad, listaArticulos->getUbicacion(strCodigoArticulo));
 
                     strCodigoArticulo = strCantidad = "";
                     selector = 3;
@@ -580,7 +581,7 @@ void LoaderThread::cargarPedido(){
             }
 
         }
-
+        qDebug()<<"No entiendo bro\n";
         strNombreArchivo = pathSinProcesar + "\\" + dirSinProcesar[2];
 
         dirSinProcesar.setPath("C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Sin procesar");
@@ -641,10 +642,11 @@ void LoaderThread::cargarPedido(){
 
             }
         }
+        qDebug()<<"Dando vueltas2\n";
     }
 
-    //else
-        //qDebug()<<"No hay archivos\n";
+    else
+       qDebug()<<"No hay archivos\n";
 }
 
 void LoaderThread::run(){

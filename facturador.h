@@ -4,6 +4,7 @@
 #include <QtCore>
 #include <QLabel>
 #include "colapedidos.h"
+#include "factura.h"
 
 
 struct Facturador;
@@ -25,6 +26,7 @@ public:
     void __init__(ColaPedidos*, QLabel*, QLabel*);
 
     void facturar(Pedido*);
+    QString writeMsg(LSInfo*);
     void escribirArchivo(QString, QByteArray);
     void run();
     void pause();

@@ -69,6 +69,24 @@ bool LDArticulos::insertarAlInicio(QString _codigo, QString _ubicacion, QString 
      return insertado;
 }
 
+QString LDArticulos::getUbicacion(QString codigo){
+
+
+    NodoLDA *tmp = primerNodo;
+
+    while(tmp != nullptr){
+
+
+        if (tmp->strCodigo.toUpper() == codigo.toUpper()){
+
+            return tmp->strUbicacion;
+        }
+        tmp = tmp->siguiente;
+    }
+
+    return "";
+}
+
 bool LDArticulos::isInList(QString dato){
 
     NodoLDA *tmp = primerNodo;

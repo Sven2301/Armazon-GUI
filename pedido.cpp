@@ -52,31 +52,32 @@ int LSPedido::largoLista(void)
 }
 
 // Constructor
-NodoLSP::NodoLSP (QString _codigo, int _cantidad){
+NodoLSP::NodoLSP (QString _codigo, int _cantidad, QString _ubicacion){
     siguiente = nullptr;
     codigo = _codigo;
     cantidad = _cantidad;
     completado = false;
     cantFaltante = 0;
+    ubicacion = _ubicacion;
 
 }
 
 // funcion que inserta un nodo nuevo en la lista
 // entradas: los datos a guardar
 // salidas: no tiene
-bool LSPedido::insertarAlInicio(QString _codigo, int _cantidad)//QString, int, int
+bool LSPedido::insertarAlInicio(QString _codigo, int _cantidad, QString _ubicacion)//QString, int, int
 {
      bool insertado = false;
      // si no hay elementos
      if (primerNodo == NULL)
      {
          // ambos apuntan al nuevo en memoria
-         primerNodo = new NodoLSP(_codigo, _cantidad);
+         primerNodo = new NodoLSP(_codigo, _cantidad, _ubicacion);
          insertado = true;
      }
      else
      {
-         NodoLSP *nuevo = new NodoLSP(_codigo, _cantidad);
+         NodoLSP *nuevo = new NodoLSP(_codigo, _cantidad, _ubicacion);
          nuevo->siguiente = primerNodo;
          primerNodo = nuevo;
          insertado = true;
@@ -87,6 +88,7 @@ bool LSPedido::insertarAlInicio(QString _codigo, int _cantidad)//QString, int, i
 void NodoLSP::imprimir(void){
 
     qDebug()<<"\tCodigo Articulo:\t"<<codigo;
+    qDebug()<<"\tCantidad:\t"<<ubicacion;
     qDebug()<<"\tCantidad:\t"<<cantidad;
     qDebug()<<"\tCantidad Faltante:\t"<<cantFaltante;
     qDebug()<<"\tCompletado:\t"<<completado<<Qt::endl;

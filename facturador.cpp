@@ -21,7 +21,7 @@ void Facturador::facturar(Pedido *pedido){
     QDateTime date;
     date = QDateTime::currentDateTime();
     QString strDate = date.toString("dd-MM-yyyy - hh-mm-ss");
-
+    qDebug()<<pedido->infoFactura->numeroAlistador<<" Aqui presente";
     QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Pedidos/Facturados_/" + pedido->infoFactura->numeroPedido + "_" +
                             pedido->infoFactura->codigoCliente + "_" + strDate + ".txt";
     QString strMsg = "Pedido:\t" + pedido->infoFactura->numeroPedido + "\n"
@@ -30,7 +30,11 @@ void Facturador::facturar(Pedido *pedido){
             + "Balanceador:\t" + pedido->infoFactura->horaBalancer + "\n"
             + "Alisto: \t" + pedido->infoFactura->horaAlisto + "\n"
             + "Empaque:\t" + pedido->infoFactura->horaEmpaque + "\n"
-            + "Finalizado:\t" + pedido->infoFactura->horaFacturacion +"\n";
+            + "Finalizado:\t" + pedido->infoFactura->horaFacturacion +"\n"
+            + "ALISTO\n Alistador # " + pedido->infoFactura->numeroAlistador + "\n";
+
+
+    strMsg += writeMsg(pedido->infoFactura->infoArticulos);
     QByteArray msg = strMsg.toUtf8();
     qDebug()<<"Facturando\n";
     escribirArchivo(path, msg);
@@ -83,4 +87,18 @@ void Facturador::run(){
         }
         sleep(1);
     }
+}
+
+QString Facturador::writeMsg(LSInfo* listaArticulos){
+
+    NodoInfo *tmp = listaArticulos->primerNodo;
+    QString msg = "";
+
+    while (tmp != nullptr){
+
+        msg += tmp->codigo + "\t" + tmp->ubicacion + "\t" + tmp->duracion + "\n";
+
+        tmp = tmp->siguiente;
+    }
+    return msg;
 }

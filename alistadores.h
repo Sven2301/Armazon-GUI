@@ -25,9 +25,10 @@ public:
     //Metodos
     Alistador();
     void __init__(int, LDArticulos*, ColaPedidos*, QLabel*, QLabel*);
-
+    QString getDuracion(QString);
     void findDuracionArticulo(QString codigo);
     void findArticuloPedido(Pedido*);
+    void addInfoArticulos(Pedido*);
     void run();
     void pause();
     void resume();

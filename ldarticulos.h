@@ -25,6 +25,7 @@ public:
     int largoLista();
     bool insertarAlInicio(QString, QString, QString, int, int, int, int);
     bool isInList(QString);
+    QString getUbicacion(QString);
     void imprimir();
 };
 
