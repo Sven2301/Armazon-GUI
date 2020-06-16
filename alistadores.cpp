@@ -49,7 +49,7 @@ void Alistador::run()
 
                 colaAlistado->encolar(pedido);
                 pedido = nullptr;
-                finish();
+                this->pause();
 
             }
             /*else{

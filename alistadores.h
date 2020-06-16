@@ -13,6 +13,7 @@ public:
     LDArticulos* articulos;
     int duracionAlistador;
     ColaPedidos * colaAlistado;
+
     QLabel *lblPedidosAlistados;
     QLabel *lblColaAlistado;
 

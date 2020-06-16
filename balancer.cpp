@@ -135,43 +135,49 @@ void Balancer::direccionarAFabrica(Pedido *pedido)
             if(categoria == 'A'){
                 if(timefA <= timefD){
                     f1->colaFabrica->encolar(pedido);
+                    tmp->fabrica = 'A';
 
                     f1->colaFabrica->pedidosActuales += 1;
                     f1->colaFabrica->pedidosTotales += 1;
                     lblF1->setText(QString::number(f1->colaFabrica->pedidosActuales) + " / " + QString::number(f1->colaFabrica->pedidosTotales));
 
-                    qDebug() << "\nPedido a FABRICA *";
+                    qDebug() << "\nPedido a FABRICA A";
                 }else{
                     fComodin->colaFabrica->encolar(pedido);
+                    tmp->fabrica = '*';
 
                     fComodin->colaFabrica->pedidosActuales += 1;
                     fComodin->colaFabrica->pedidosTotales += 1;
                     lblF4->setText(QString::number(fComodin->colaFabrica->pedidosActuales) + " / " + QString::number(fComodin->colaFabrica->pedidosTotales));
 
-                    qDebug() << "\nPedido a FABRICA A";
+                    qDebug() << "\nPedido a FABRICA *";
                 }
 
             }else if(categoria == 'B'){
                 if(timefB <= timefD){
-                    fComodin->colaFabrica->encolar(pedido);
-
-                    fComodin->colaFabrica->pedidosActuales += 1;
-                    fComodin->colaFabrica->pedidosTotales += 1;
-                    lblF4->setText(QString::number(fComodin->colaFabrica->pedidosActuales) + " / " + QString::number(fComodin->colaFabrica->pedidosTotales));
-
-                    qDebug() << "\nPedido a FABRICA *";
-                }else{
                     f2->colaFabrica->encolar(pedido);
+                    tmp->fabrica = 'B';
 
                     f2->colaFabrica->pedidosActuales += 1;
                     f2->colaFabrica->pedidosTotales += 1;
                     lblF2->setText(QString::number(f2->colaFabrica->pedidosActuales) + " / " + QString::number(f2->colaFabrica->pedidosTotales));
 
                     qDebug() << "\nPedido a FABRICA B";
+
+                }else{
+                    fComodin->colaFabrica->encolar(pedido);
+                    tmp->fabrica = '*';
+
+                    fComodin->colaFabrica->pedidosActuales += 1;
+                    fComodin->colaFabrica->pedidosTotales += 1;
+                    lblF4->setText(QString::number(fComodin->colaFabrica->pedidosActuales) + " / " + QString::number(fComodin->colaFabrica->pedidosTotales));
+
+                    qDebug() << "\nPedido a FABRICA *";
                 }
 
             }else if(categoria == 'C'){
                 f3->colaFabrica->encolar(pedido);
+                tmp->fabrica = 'C';
 
                 f3->colaFabrica->pedidosActuales += 1;
                 f3->colaFabrica->pedidosTotales += 1;

@@ -29,7 +29,8 @@ public:
     BodegaAlisto();
     void __init__(LDArticulos*, ColaPedidos*, QLabel*, QLabel*, QLabel*, QLabel*, QLabel*, QLabel*, QLabel*, QLabel*);
 
-    NodoCA* alistadorDisponible();
+    NodoCA* alistadorDisponible(void);
+    int largoLista(void);
     void run();
     void pause();
     void resume();

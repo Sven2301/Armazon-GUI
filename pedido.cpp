@@ -88,9 +88,10 @@ bool LSPedido::insertarAlInicio(QString _codigo, int _cantidad, QString _ubicaci
 void NodoLSP::imprimir(void){
 
     qDebug()<<"\tCodigo Articulo:\t"<<codigo;
-    qDebug()<<"\tCantidad:\t"<<ubicacion;
+    qDebug()<<"\tUbicacion:\t"<<ubicacion;
     qDebug()<<"\tCantidad:\t"<<cantidad;
     qDebug()<<"\tCantidad Faltante:\t"<<cantFaltante;
+    qDebug()<<"\tFabrica:\t"<<fabrica;
     qDebug()<<"\tCompletado:\t"<<completado<<Qt::endl;
 }
 

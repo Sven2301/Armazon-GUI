@@ -22,8 +22,12 @@ void Facturador::facturar(Pedido *pedido){
     date = QDateTime::currentDateTime();
     QString strDate = date.toString("dd-MM-yyyy - hh-mm-ss");
     qDebug()<<pedido->infoFactura->numeroAlistador<<" Aqui presente";
-    QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Pedidos/Facturados_/" + pedido->infoFactura->numeroPedido + "_" +
+
+    //QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Pedidos/Facturados_/" + pedido->infoFactura->numeroPedido + "_" +
+    //                        pedido->infoFactura->codigoCliente + "_" + strDate + ".txt";
+    QString path = "C:/Users/Fung Méndez/Desktop/Diego/Sem III/Estructuras/PROYECTS/Proyecto CONSOLE/Proyecto_1/BD/Pedidos/Facturados/" + pedido->infoFactura->numeroPedido + "_" +
                             pedido->infoFactura->codigoCliente + "_" + strDate + ".txt";
+
     QString strMsg = "Pedido:\t" + pedido->infoFactura->numeroPedido + "\n"
             + "Cliente:\t" + pedido->infoFactura->codigoCliente + "\n"
             + "En cola:\t" + pedido->infoFactura->horaLoader + "\n"

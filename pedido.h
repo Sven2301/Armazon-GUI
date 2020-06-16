@@ -51,6 +51,8 @@ public:
     int cantidad = 0;
     bool completado = false;
     int cantFaltante = 0;
+    char fabrica = 'x';
+    bool pasoPorFabrica = false;
 
     //Metodos
     NodoLSP(QString, int, QString);

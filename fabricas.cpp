@@ -72,7 +72,7 @@ int Fabrica::setTime(Pedido * pedido, bool caso)
     int faltante;
 
     while (tmp != nullptr) {
-
+    qDebug() << "\n***** FABRICA "<< tipo << tmp->codigo << " -  "<<pedido->numeroPedido;
         tmpArticulo = findCategoriaArticulo(tmp->codigo);
 
         if(tmpArticulo->strCategoria == tipo || tipo == '*'){
@@ -80,13 +80,14 @@ int Fabrica::setTime(Pedido * pedido, bool caso)
 
                 faltante = tmp->cantFaltante*tmpArticulo->tiempoFabricacion;
 
-                if(caso){
+                if(caso && !tmp->pasoPorFabrica){
                     qDebug() << "--------ENTRA---------";
                     qDebug() << "Pedido " << pedido->numeroPedido << ", cliente: " << pedido->codigoCliente;
                     qDebug() << "Tiempo de Espera: " << faltante;
                     pause();
                     sleep(faltante);
                     tmp->completado = true;
+                    tmp->pasoPorFabrica = true;
                     resume();
                     start();
                     qDebug() << "---------SALE---------";

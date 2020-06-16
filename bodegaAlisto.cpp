@@ -34,6 +34,8 @@ void BodegaAlisto::__init__(LDArticulos * _articulos, ColaPedidos * _colaAlistad
     colaAlistadores->encolar(a4);
     colaAlistadores->encolar(a5);
     colaAlistadores->encolar(a6);
+
+
 }
 
 void BodegaAlisto::run()
@@ -58,7 +60,11 @@ void BodegaAlisto::run()
 
 
                     alistadorLibre->alistador->pedido = tmp->pedido;
+
+                    alistadorLibre->alistador->resume();
                     alistadorLibre->alistador->start();
+
+
                     colaAlistadores->encolar(alistadorLibre->alistador);
                 }else
                     qDebug() << "No hay alistador disponible \n";
@@ -75,12 +81,36 @@ void BodegaAlisto::run()
 }
 
 NodoCA* BodegaAlisto::alistadorDisponible(){
-    NodoCA * libre;
-    if(colaAlistadores->verFrente() != NULL){
-        libre = colaAlistadores->desencolar();
-        return libre;
+    int i = 0;
+    NodoCA * ocupado;
+    NodoCA * tmp = colaAlistadores->frente;
+
+    while (tmp != nullptr) {
+        if(i >= largoLista())
+            return NULL;
+        if(tmp->alistador->pedido == NULL)
+            return colaAlistadores->desencolar();
+
+        ocupado = colaAlistadores->desencolar();
+        colaAlistadores->encolar(ocupado->alistador);
+        i++;
+        tmp = tmp->siguiente;
     }
+    //qDebug() << "Alistador: "<< tmp->alistador->id;
     return NULL;
+}
+
+int BodegaAlisto::largoLista(void)
+{
+     NodoCA *tmp = colaAlistadores->frente;
+
+     // mientras tmp no sea nulo, avanza
+     int i=0;
+     while (tmp != NULL){
+           i++;
+           tmp = tmp->siguiente;
+     }
+     return i;
 }
 
 void BodegaAlisto::pause()
