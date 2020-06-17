@@ -51,6 +51,36 @@ private slots:
 
     void on_btnReanudar_todo_clicked();
 
+    void on_btnF1_pausar_clicked();
+    void on_btnF1_reanudar_clicked();
+    void on_btnF2_pausar_clicked();
+    void on_btnF2_reanudar_clicked();
+    void on_btnF3_pausar_clicked();
+    void on_btnF3_reanudar_clicked();
+    void on_btnF4_pausar_clicked();
+    void on_btnF4_reanudar_clicked();
+
+    void on_BtnA1_pausar_clicked();
+    void on_BtnA1_reanudar_clicked();
+    void on_BtnA2_pausar_clicked();
+    void on_BtnA2_reanudar_clicked();
+    void on_BtnA3_pausar_clicked();
+    void on_BtnA3_reanudar_clicked();
+    void on_BtnA4_pausar_clicked();
+    void on_BtnA4_reanudar_clicked();
+    void on_BtnA5_pausar_clicked();
+    void on_BtnA5_reanudar_clicked();
+    void on_BtnA6_pausar_clicked();
+    void on_BtnA6_reanudar_clicked();
+
+    void on_BtnEmpacado_pausar_clicked();
+
+    void on_BtnEmpacado_reanudar_clicked();
+
+    void on_BtnFacturador_pausar_clicked();
+
+    void on_BtnFacturador_reanudar_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
