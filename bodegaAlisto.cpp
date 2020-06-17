@@ -26,8 +26,7 @@ void BodegaAlisto::__init__(LDArticulos * _articulos, ColaPedidos * _colaAlistad
     a3->__init__(3, articulos, colaAlistado, lblAlistador3, _lblcolaAlistado);
     a4->__init__(4, articulos, colaAlistado, lblAlistador4, _lblcolaAlistado);
     a5->__init__(5, articulos, colaAlistado, lblAlistador5, _lblcolaAlistado);
-    a6->__init__(6, articulos, colaAlistado, lblAlistador6,_lblcolaAlistado);
-
+    a6->__init__(6, articulos, colaAlistado, lblAlistador6, _lblcolaAlistado);
     colaAlistadores->encolar(a1);
     colaAlistadores->encolar(a2);
     colaAlistadores->encolar(a3);
@@ -58,12 +57,10 @@ void BodegaAlisto::run()
                     colaAlisto->pedidosActuales -= 1;
                     lblColaAlisto->setText(QString::number(colaAlisto->pedidosActuales) + " / " + QString::number(colaAlisto->pedidosTotales));
 
-
                     alistadorLibre->alistador->pedido = tmp->pedido;
 
                     alistadorLibre->alistador->resume();
                     alistadorLibre->alistador->start();
-
 
                     colaAlistadores->encolar(alistadorLibre->alistador);
                 }else

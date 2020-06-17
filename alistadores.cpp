@@ -32,6 +32,7 @@ void Alistador::run()
 
                 qDebug() << "--------ENTRA ALISTADOR " << id << "---------";
                 qDebug() << "\nTiempo que dura el Alistador: " << duracionAlistador;
+
                 pedidosAlistados++;
                 pedidosActuales++;
                 lblPedidosAlistados->setText(QString::number(pedidosActuales) + " / " + QString::number(pedidosAlistados));
@@ -41,6 +42,7 @@ void Alistador::run()
                 resume();
                 start();
                 qDebug() << "---------SALE ALISTADOR " << id << "---------";
+
 
                 colaAlistado->pedidosTotales += 1;
                 colaAlistado->pedidosActuales += 1;

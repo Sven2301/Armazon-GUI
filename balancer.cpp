@@ -95,7 +95,8 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
         tmp->pedido->infoFactura->horaAlisto = strFechaHora;
         colaAlisto->pedidosActuales += 1;
         colaAlisto->pedidosTotales += 1;
-        lblColaAlisto->setText(QString::number(pedidosActuales) + " / " + QString::number(pedidosTotales));
+        lblColaAlisto->setText(QString::number(colaAlisto->pedidosActuales) + " / " + QString::number(colaAlisto->pedidosTotales));
+
         pedidosProcesadosActuales--;
         lblBalanceador->setText(QString::number(pedidosProcesadosActuales) + " / " + QString::number(pedidosProcesadosTotales));
 
@@ -105,6 +106,7 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
         lblBalanceador->setText(QString::number(pedidosProcesadosActuales) + " / " + QString::number(pedidosProcesadosTotales));
         direccionarAFabrica(tmp->pedido);
     }
+
 }
 
 char Balancer::findCategoriaArticulo(QString codigo)
