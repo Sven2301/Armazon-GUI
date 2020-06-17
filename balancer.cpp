@@ -72,6 +72,7 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
     qDebug() << "\n***** BALANCER *****\n";
     qDebug() << "\nDesencolando pedido de la ColaPedidos";
     NodoCP * tmp = colapedido->desencolar();
+
     QDateTime date;
     date = QDateTime::currentDateTime();
     QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
@@ -89,6 +90,7 @@ void Balancer::pedidoConPrioridad(ColaPedidos* colapedido)
 
     if(pedidoCompleto(tmp)){
         colaAlisto->encolar(tmp->pedido);
+
         QDateTime date;
         date = QDateTime::currentDateTime();
         QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");

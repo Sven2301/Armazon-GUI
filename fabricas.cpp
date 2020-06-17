@@ -35,7 +35,6 @@ void Fabrica::run()
                 colaFabrica->pedidosActuales -= 1;
                 lblPersonal->setText(QString::number(colaFabrica->pedidosActuales) + " / " + QString::number(colaFabrica->pedidosTotales));
 
-
                 verificarPedido->colaPedidoCompletado->encolar(aux->pedido);
 
                 qDebug() << "\nDesencolando de colaFabrica";
@@ -72,11 +71,47 @@ int Fabrica::setTime(Pedido * pedido, bool caso)
     int faltante;
 
     while (tmp != nullptr) {
+
+        if((tmp->fabrica == tipo && !tmp->pasoPorFabrica) || (tmp->fabrica == tipo && !caso)){
+            if(tmp->cantFaltante > 0 ){
+                tmpArticulo = findCategoriaArticulo(tmp->codigo);
+
+                faltante = tmp->cantFaltante*tmpArticulo->tiempoFabricacion;
+
+                if(caso){
+                    qDebug() << "--------ENTRA---------";
+                    qDebug() << "Pedido " << pedido->numeroPedido << ", cliente: " << pedido->codigoCliente;
+                    qDebug() << "Tiempo de Espera: " << faltante;
+                    pause();
+                    sleep(faltante);
+                    tmp->completado = true;
+                    tmp->pasoPorFabrica = true;
+                    resume();
+                    start();
+                    qDebug() << "---------SALE---------";
+                }
+
+                return faltante;
+            }else
+                tmp->completado = true;
+        }
+        tmp = tmp->siguiente;
+    }
+    return 0;
+}
+
+/*int Fabrica::setTime(Pedido * pedido, bool caso)
+{
+    NodoLSP * tmp = pedido->listaPedido->primerNodo;
+    NodoLDA * tmpArticulo;
+    int faltante;
+
+    while (tmp != nullptr) {
     qDebug() << "\n***** FABRICA "<< tipo << tmp->codigo << " -  "<<pedido->numeroPedido;
         tmpArticulo = findCategoriaArticulo(tmp->codigo);
 
         if(tmpArticulo->strCategoria == tipo || tipo == '*'){
-            if(tmp->cantFaltante > 0){
+            if(tmp->cantFaltante > 0 ){
 
                 faltante = tmp->cantFaltante*tmpArticulo->tiempoFabricacion;
 
@@ -100,7 +135,7 @@ int Fabrica::setTime(Pedido * pedido, bool caso)
         tmp = tmp->siguiente;
     }
     return 0;
-}
+}*/
 
 // Retorna la cantidad de segundos que la colaFabrica tiene que procesar
 int Fabrica::tiempoEnFabrica(ColaPedidos * colaFabrica)

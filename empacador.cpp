@@ -19,7 +19,6 @@ void Empacador::__init__(QLabel *_lblPersonal, QLabel *_lblColaAlistado, QLabel 
 
 void Empacador::run()
 {
-    int i = 0; // Prueba
     while (activo) {
         while (pausa){
             sleep(1);
@@ -27,10 +26,13 @@ void Empacador::run()
 
         if(mutexEmpacador->tryLock()){
             if (!colaAlistado->vacia()){
-                qDebug() << "\n***** EMPACADOR *****\n" << i;
+                qDebug() << "\n***** EMPACADOR *****";
                 colaAlistado->imprimir();
                 NodoCP * tmp = colaAlistado->frente;
                 int tiempoEmpacando = cantArticulos(tmp->pedido);
+
+                qDebug() << "Pedido: "<< tmp << " : " << tiempoEmpacando << "\n";
+
                 totalEmpacados++;
                 actualEmpacando++;
                 lblEmpacados->setText( QString::number(actualEmpacando) + " / " + QString::number(totalEmpacados));
@@ -39,7 +41,8 @@ void Empacador::run()
                 sleep(tiempoEmpacando);
                 resume();
                 start();
-                qDebug() <<"\n***** SALE EMPACADOR *****\n" << i;
+                qDebug() <<"\n***** SALE EMPACADOR *****";
+
                 QDateTime date;
                 date = QDateTime::currentDateTime();
                 QString strFechaHora = date.toString("dd-MM-yyyy hh:mm:ss");
@@ -49,7 +52,6 @@ void Empacador::run()
 
                 colaAlistado->desencolar();
 
-
                 colaPorFacturar->encolar(tmp->pedido);
                 colaPorFacturar->pedidosActuales += 1;
                 colaPorFacturar->pedidosTotales += 1;
@@ -57,8 +59,6 @@ void Empacador::run()
 
                 actualEmpacando--;
                 lblEmpacados->setText( QString::number(actualEmpacando) + " / " + QString::number(totalEmpacados));
-
-                i++; // Prueba
             }
             /*else{
                 qDebug() << "\nEsperando un pedido (EMPACADOR)";
