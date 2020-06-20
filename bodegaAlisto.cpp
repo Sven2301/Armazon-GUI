@@ -85,7 +85,7 @@ NodoCA* BodegaAlisto::alistadorDisponible(){
     while (tmp != nullptr) {
         if(i >= largoLista())
             return NULL;
-        if(tmp->alistador->pedido == NULL)
+        if(tmp->alistador->pedido == NULL && !tmp->alistador->pausa)
             return colaAlistadores->desencolar();
 
         ocupado = colaAlistadores->desencolar();

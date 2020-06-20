@@ -98,22 +98,6 @@ void Alistador::findArticuloPedido(Pedido *pedido)
     }
 }
 
-
-void Alistador::pause()
-{
-    pausa = true;
-}
-
-void Alistador::resume()
-{
-    pausa = false;
-}
-
-void Alistador::finish()
-{
-    activo = false;
-}
-
 void Alistador::addInfoArticulos(Pedido * pedido){
 
     NodoLSP *tmp = pedido->listaPedido->primerNodo;
@@ -145,4 +129,20 @@ QString Alistador::getDuracion(QString codigo)
         tmp = tmp->siguiente;
     }
     return "";
+}
+
+
+void Alistador::pause()
+{
+    pausa = true;
+}
+
+void Alistador::resume()
+{
+    pausa = false;
+}
+
+void Alistador::finish()
+{
+    activo = false;
 }
