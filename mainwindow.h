@@ -30,6 +30,22 @@ public:
     BodegaAlisto * bodega;
     Empacador * empacador;
     Facturador *facturador;
+    bool empezado = false;
+
+    QMovie *loaderGIF;
+    QMovie *fabricaAGIF;
+    QMovie *balancerGIF;
+    QMovie *fabricaBGIF;
+    QMovie *fabricaCGIF;
+    QMovie *fabricaCoGIF;
+    QMovie *alistador1GIF;
+    QMovie *alistador2GIF;
+    QMovie *alistador3GIF;
+    QMovie *alistador4GIF;
+    QMovie *alistador5GIF;
+    QMovie *alistador6GIF;
+    QMovie *empacadorGIF;
+    QMovie *facturadorGIF;
 
 
     MainWindow(QWidget *parent = nullptr);

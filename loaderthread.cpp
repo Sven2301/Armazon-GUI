@@ -55,8 +55,9 @@ void LoaderThread::actualizarInventario(){
     QByteArray msg;
     QFile archivo;
 
-    //QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Articulos.txt";
-    QString path = "C:/Users/Fung Méndez/Desktop/Diego/Sem III/Estructuras/PROYECTS/Proyecto CONSOLE/Proyecto_1/BD/Articulos.txt";
+    QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Articulos.txt";
+    //QString path = "C:/Users/Fung Méndez/Desktop/Diego/Sem III/Estructuras/PROYECTS/Proyecto CONSOLE/Proyecto_1/BD/Articulos.txt";
+    //QString path = "../BD/Articulos.txt";
 
     archivo.setFileName(path);
 
@@ -78,23 +79,27 @@ void LoaderThread::actualizarInventario(){
 
 QByteArray LoaderThread::leerArchivo(QString path){
 
-    QByteArray contenido;
+    QByteArray contenido = " ";
     QFile archivo;
     archivo.setFileName(path);
-    if (!archivo.exists()){
+    QFileInfo *infoArchivo = new QFileInfo(archivo);
 
-        qDebug()<<"El archivo que desea abrir no existe\n";
+    if (infoArchivo->isFile()){
+        archivo.open(QIODevice::ReadOnly | QIODevice::Text);
+        contenido = archivo.readAll();
+
     }
 
-    archivo.open(QIODevice::ReadOnly | QIODevice::Text);
-
+    else {
+        qDebug()<<"No es un File\n";
+        return "-1";
+    }
     if (!archivo.isOpen()){
 
         qDebug()<<"El archivo no se pudo abrir\n";
+        error = true;
+
     }
-    contenido = archivo.readAll();
-    //qDebug()<<contenido<<"\n";
-    //qDebug()<<contenido.length();
     archivo.close();
     return contenido;
 
@@ -106,8 +111,9 @@ void LoaderThread::cargarClientes(){
     QString strNombre = "";
     QString strPrioridad = "";
 
-    //QString path = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Clientes.txt";
-    QString path = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Clientes.txt";
+    QString path = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Clientes.txt";
+    //QString path = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Clientes.txt";
+    //QString path = "../BD/Clientes.txt";
 
     int codigo = 0;
     int prioridad = 0;
@@ -116,7 +122,7 @@ void LoaderThread::cargarClientes(){
 
     QByteArray texto = leerArchivo(path);
     texto = texto + "\n";
-    //QByteArray texto = leerArchivo("El path de la PC  de Diego");
+
 
     for (int i = 0; i < texto.length(); ++i) {
 
@@ -211,8 +217,9 @@ void LoaderThread::cargarArticulos(){
     QString strCantidad = "";
     QString strTiempo = "";
 
-    //QString path = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Articulos.txt";
-    QString path = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Articulos.txt";
+    QString path = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Articulos.txt";
+    //QString path = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Articulos.txt";
+    //QString path = "../BD/Articulos.txt";
 
     Coordenadas* coordenadas;
     int cantidad = 0;
@@ -440,13 +447,17 @@ void LoaderThread::cargarPedido(){
     Pedido *pedido;
     QString strNombreArchivo = "";
 
-    //QString pathSinProcesar = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Sin procesar";
-    //QString pathError = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Error";
-    //QString pathProcesado = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Procesados";
+    QString pathSinProcesar = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Sin procesar";
+    QString pathError = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Error";
+    QString pathProcesado = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Procesados";
 
-    QString pathSinProcesar = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Sin procesar";
-    QString pathError = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Error";
-    QString pathProcesado = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Procesados";
+    //QString pathSinProcesar = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Sin procesar";
+    //QString pathError = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Error";
+    //QString pathProcesado = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Procesados";
+
+    //QString pathSinProcesar = "../BD/Pedidos/Sin procesar";
+    //QString pathError = "../BD/Pedidos/Error";
+    //QString pathProcesado = "../BD/Pedidos/Procesados";
 
     QDir dirSinProcesar;
 
@@ -460,6 +471,11 @@ void LoaderThread::cargarPedido(){
     if (dirSinProcesar.count() > 2){
 
         QByteArray texto = leerArchivo(pathSinProcesar + "\\" + dirSinProcesar[2]);
+        if (texto == "-1"){
+
+            ok = false;
+        }
+
         texto = texto + "\n";
 
         int i = 0;
@@ -606,11 +622,17 @@ void LoaderThread::cargarPedido(){
         }
         strNombreArchivo = pathSinProcesar + "\\" + dirSinProcesar[2];
 
-        //dirSinProcesar.setPath("C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Sin procesar");
-        dirSinProcesar.setPath("C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Sin procesar");
+        dirSinProcesar.setPath("C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Pedidos\\Sin procesar");
+        //dirSinProcesar.setPath("C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Pedidos\\Sin procesar");
 
         strNombreArchivo = renombrarArchivo(strNombreArchivo);
+        if (pedido->listaPedido->largoLista() == 0){
 
+            qDebug()<<"El pedido esta vacio";
+            escribirArchivo(pathSinProcesar + "\\" + dirSinProcesar[2], texto + "\nEl pedido esta vacio\n");
+            ok = false;
+
+        }
         if (!ok){
             qDebug()<<"ERROR: Se movio el archivo a carpeta de errores\n";
             copiarArchivo(strNombreArchivo, pathError + "\\" + dirSinProcesar[2]);
