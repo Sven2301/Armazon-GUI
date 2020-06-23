@@ -5,7 +5,8 @@
 #include <QtMultimedia/QMediaPlayer>
 #include <QDesktopWidget>
 
-
+//  Steven Granados - 2019037999
+//  Diego Fung - 2019308467
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,8 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     resize(QDesktopWidget().availableGeometry(this).size() * 0.90);
-    QPixmap backg("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fallout-Terminal.jpg");
+    //QPixmap backg("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fallout-Terminal.jpg");
     //QPixmap backg("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Fallout-Terminal.jpg");
+    QPixmap backg("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Fallout-Terminal.jpg");
 
     backg = backg.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
@@ -28,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 // GIF
     //LOADER
-    loaderGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Loader-VaultBoy.gif");
+    //loaderGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Loader-VaultBoy.gif");
     //loaderGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Loader-VaultBoy.gif");
+    loaderGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Loader-VaultBoy.gif");
 
     QLabel *loaderAnimation = new QLabel(this);
     loaderAnimation->setMovie(loaderGIF);
@@ -39,8 +42,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //BALANCER
-    balancerGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Balancer-VaultBoy.gif");
+    //balancerGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Balancer-VaultBoy.gif");
     //balancerGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Balancer-VaultBoy.gif");
+    balancerGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Balancer-VaultBoy.gif");
 
     QLabel *balancerAnimation = new QLabel(this);
     balancerAnimation->setMovie(balancerGIF);
@@ -49,8 +53,9 @@ MainWindow::MainWindow(QWidget *parent)
     balancerGIF->stop();
 
     //FABRICA A
-    fabricaAGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    //fabricaAGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
     //QMovie *fabricaAGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    fabricaAGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
 
     QLabel *fabricaAAnimation = new QLabel(this);
     fabricaAAnimation->setMovie(fabricaAGIF);
@@ -60,8 +65,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //FABRICA B
-    fabricaBGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    //fabricaBGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
     //fabricaBGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    fabricaBGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
 
     QLabel *fabricaBAnimation = new QLabel(this);
     fabricaBAnimation->setMovie(fabricaBGIF);
@@ -70,8 +76,11 @@ MainWindow::MainWindow(QWidget *parent)
     fabricaBGIF->stop();
 
     //FABRICA C
-    fabricaCGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    //fabricaCGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
     //fabricaCGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    fabricaCGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+
+
     QLabel *fabricaCAnimation = new QLabel(this);
     fabricaCAnimation->setMovie(fabricaCGIF);
     fabricaCAnimation->setGeometry(620, 0, 125, 125);
@@ -79,8 +88,9 @@ MainWindow::MainWindow(QWidget *parent)
     fabricaCGIF->stop();
 
     //FABRICA COMODIN
-    fabricaCoGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    //fabricaCoGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
     //fabricaCoGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
+    fabricaCoGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Fabrica-VaultBoy.gif");
 
     QLabel *fabricaCoAnimation = new QLabel(this);
     fabricaCoAnimation->setMovie(fabricaCoGIF);
@@ -89,8 +99,9 @@ MainWindow::MainWindow(QWidget *parent)
     fabricaCoGIF->stop();
 
     //ALISTADOR 1
-    alistador1GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    //alistador1GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
     //alistador1GIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    alistador1GIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Alistador-VaultBoy.gif");
 
     QLabel *alistador1Animation = new QLabel(this);
     alistador1Animation->setMovie(alistador1GIF);
@@ -99,8 +110,9 @@ MainWindow::MainWindow(QWidget *parent)
     alistador1GIF->stop();
 
     //ALISTADOR 2
-    alistador2GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    //alistador2GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
     //alistador2GIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    alistador2GIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Alistador-VaultBoy.gif");
 
     QLabel *alistador2Animation = new QLabel(this);
     alistador2Animation->setMovie(alistador2GIF);
@@ -109,8 +121,9 @@ MainWindow::MainWindow(QWidget *parent)
     alistador2GIF->stop();
 
     //ALISTADOR 3
-    alistador3GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    //alistador3GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
     //alistador3GIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    alistador3GIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Alistador-VaultBoy.gif");
 
     QLabel *alistador3Animation = new QLabel(this);
     alistador3Animation->setMovie(alistador3GIF);
@@ -119,8 +132,9 @@ MainWindow::MainWindow(QWidget *parent)
     alistador3GIF->stop();
 
     //ALISTADOR 4
-    alistador4GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    //alistador4GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
     //alistador4GIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    alistador4GIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Alistador-VaultBoy.gif");
 
     QLabel *alistador4Animation = new QLabel(this);
     alistador4Animation->setMovie(alistador4GIF);
@@ -129,8 +143,9 @@ MainWindow::MainWindow(QWidget *parent)
     alistador4GIF->stop();
 
     //ALISTADOR 5
-    alistador5GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    //alistador5GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
     //alistador5GIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    alistador5GIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Alistador-VaultBoy.gif");
 
     QLabel *alistador5Animation = new QLabel(this);
     alistador5Animation->setMovie(alistador5GIF);
@@ -139,8 +154,9 @@ MainWindow::MainWindow(QWidget *parent)
     alistador5GIF->stop();
 
     //ALISTADOR 6
-    alistador6GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    //alistador6GIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
     //alistador6GIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Alistador-VaultBoy.gif");
+    alistador6GIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Alistador-VaultBoy.gif");
 
     QLabel *alistador6Animation = new QLabel(this);
     alistador6Animation->setMovie(alistador6GIF);
@@ -149,8 +165,9 @@ MainWindow::MainWindow(QWidget *parent)
     alistador6GIF->stop();
 
     //EMPACADOR
-    empacadorGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Empacador-VaultBoy.gif");
+    //empacadorGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Empacador-VaultBoy.gif");
     //empacadorGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Empacador-VaultBoy.gif");
+    empacadorGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Empacador-VaultBoy.gif");
 
     QLabel *empacadorAnimation = new QLabel(this);
     empacadorAnimation->setMovie(empacadorGIF);
@@ -159,9 +176,12 @@ MainWindow::MainWindow(QWidget *parent)
     empacadorGIF->stop();
 
     //FACTURADOR
-    facturadorGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Facturador-VaultBoy.gif");
+    //facturadorGIF = new QMovie("C:/Users/sven/Documents/GitHub/Armazon-GUI/Images/Facturador-VaultBoy.gif");
     //facturadorGIF = new QMovie("C:/Users/Fung Méndez/Documents/GitHub/Armazon-GUI/Images/Facturador-VaultBoy.gif");
     //QMovie *facturadorGIF = new QMovie("../Armazon-GUI/Images/Facturador-VaultBoy.gif");
+    facturadorGIF = new QMovie("C:/Users/Fung Méndez/Desktop/Armazon-GUI/Images/Facturador-VaultBoy.gif");
+
+
     QLabel *facturadorAnimation = new QLabel(this);
     facturadorAnimation->setMovie(facturadorGIF);
     facturadorAnimation->setGeometry(1040, 50, 125, 125);
