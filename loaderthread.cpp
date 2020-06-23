@@ -58,7 +58,7 @@ void LoaderThread::actualizarInventario(){
     QString path = "C:/ITCR/Semestre I 2020/Estructuras de Datos/Proyectos/Proyecto 1/Armazon/Armazon/BD/Articulos.txt";
     //QString path = "C:/Users/Fung Méndez/Desktop/Diego/Sem III/Estructuras/PROYECTS/Proyecto CONSOLE/Proyecto_1/BD/Articulos.txt";
     //QString path = "../BD/Articulos.txt";
-
+    //QString path = = "C:/Desktop/Armazon-GUI/BD/Articulos.txt";
     archivo.setFileName(path);
 
     while (tmp != nullptr){
@@ -114,6 +114,7 @@ void LoaderThread::cargarClientes(){
     QString path = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Clientes.txt";
     //QString path = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Clientes.txt";
     //QString path = "../BD/Clientes.txt";
+    //QString path = "C:/Desktop/Armazon-GUI/BD/Clientes.txt";
 
     int codigo = 0;
     int prioridad = 0;
@@ -220,6 +221,7 @@ void LoaderThread::cargarArticulos(){
     QString path = "C:\\ITCR\\Semestre I 2020\\Estructuras de Datos\\Proyectos\\Proyecto 1\\Armazon\\Armazon\\BD\\Articulos.txt";
     //QString path = "C:\\Users\\Fung Méndez\\Desktop\\Diego\\Sem III\\Estructuras\\PROYECTS\\Proyecto CONSOLE\\Proyecto_1\\BD\\Articulos.txt";
     //QString path = "../BD/Articulos.txt";
+    //QString path = "C:/Desktop/Armazon-GUI/BD/Articulos.txt";
 
     Coordenadas* coordenadas;
     int cantidad = 0;
@@ -458,6 +460,10 @@ void LoaderThread::cargarPedido(){
     //QString pathSinProcesar = "../BD/Pedidos/Sin procesar";
     //QString pathError = "../BD/Pedidos/Error";
     //QString pathProcesado = "../BD/Pedidos/Procesados";
+
+    //QString pathSinProcesar = "C:/Desktop/Armazon-GUI/BD/Pedidos/Sin procesar";
+    //QString pathError = "C:/Desktop/Armazon-GUI/BD/Pedidos/Error";
+    //QString pathProcesado = "C:/Desktop/Armazon-GUI/BD/Pedidos/Procesados";
 
     QDir dirSinProcesar;
 

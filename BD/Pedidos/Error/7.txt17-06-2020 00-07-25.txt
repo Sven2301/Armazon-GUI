@@ -1,0 +1,10 @@
+7
+002
+A01	50
+B01	1
+C01	1
+D01	100
+
+
+
+El numero de pedido ya existe

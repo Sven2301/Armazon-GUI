@@ -1,0 +1,11 @@
+001	Steven Granados	10
+002	Manolo Lama	07
+
+
+
+
+003	Paco Gonzalez	01
+004	Javi Martinez	09
+005	Paco Alcacer	02
+006	Iker Muniain	01
+
